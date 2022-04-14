@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+##
+## EPITECH PROJECT, 2021
+## 106bombyx.py
+## File description:
+## 106bombyx
+##
+import sys
+import re
+
+def is_usage(arg):
+    if arg[0] == '-' and arg[1] == 'h' and len(arg) == 2:
+        print("USAGE")
+        print("    ./107transfer [num den]*\n")
+        print("DESCRIPTION")
+        print("    num     polynomial numerator defined by its coefficients")
+        print("    den     polynomial denominator defined by its coefficients")
+        sys.exit(0)
+    else:
+        sys.exit(84)
+
+def is_valid_args(ac, av):
+    i = 1
+    j = 0
+    k = 0
+    
+    while i < ac:
+        j = 0
+        k = len(av[i])
+        while j < k:
+            if av[i][j] < '0' or av[i][j] > '9':
+                if av[i][j] != '*' and av[i][j] != '-':
+                    sys.exit(84)
+            j += 1
+        i += 1
+    return 0
+
+def polynomial(la, x):
+    i = 0
+    n = int(len(la))
+    res = 0
+    
+    res = int(la[0])
+    i += 1
+    while i < n:
+        res  = res * x + int(la[i])
+        i += 1
+    return res
+
+def mult(results, x):
+    lenght = int(len(results))
+    i = 0
+    display = 0
+    nbr = 1
+    while i < lenght:
+        nbr *= results[i]
+        i += 1
+    print("{:.3f} -> {:.5f}".format(x / 1000, nbr))
+
+def calc(lists):
+    i = 0
+    results = []
+    x = 0
+    factors = int((int(len(lists))- 1))
+
+    while x <= 1000:
+        i = 0
+        results.clear()
+        while i < factors:
+            try:
+                results.append(polynomial(lists[i], x / 1000) / polynomial(lists[i + 1], x / 1000))
+            except ZeroDivisionError:
+                results.append(0)
+            i += 2
+        mult(results, x)
+        x += 1
+    return 0
+    
+def create_list(len_factors, av):
+    i = 0
+    j = 1
+    lists = [[]]
+    
+    while i < len_factors:
+        lists.insert(i, re.findall( '-?\d+\.?\d*', sys.argv[j]))
+        i += 1
+        j += 1
+    i = 0
+    while i < len_factors:
+        lists[i].reverse()
+        i += 1
+    i = 0
+    calc(lists)
+    return 0
+
+def main():
+    argc = len(sys.argv)
+    
+    if argc == 2:
+        is_usage(sys.argv[1])
+    if argc % 2 == 0 or argc == 1:
+        sys.exit(84)
+    is_valid_args(argc, sys.argv)
+    create_list(argc - 1, sys.argv)  
+    return 0
+
+
+if __name__ == '__main__':
+    main()
