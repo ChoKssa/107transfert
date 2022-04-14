@@ -61,7 +61,52 @@ The denominator will be: "1"
 0.999 -> 9.97003
 1.000 -> 10.00000
 ```
+<br>
 
+* You can manage several components in cascade. In such a case, the transfer function of the set of components is the product of the transfer functions of each component:
+<p align="center">
+  <img align="center" width="25%" src="exemple1.png"/>
+</p>
+
+Numerators will be:  "0 * 0 * 9" and "2 * 4 * 6"  
+Denominators will be: "1 * 3 * 5" and "8 * 8 * 8"
+<br>
+```
+[107transfert]$ ./107transfert "0*0*9" "1*3*5" "2*4*6" "8*8*8" > file
+[107transfert]$ head file
+0.000 -> 0.00000
+0.001 -> 0.00000
+0.002 -> 0.00001
+0.003 -> 0.00002
+0.004 -> 0.00004
+0.005 -> 0.00006
+0.006 -> 0.00008
+0.007 -> 0.00011
+0.008 -> 0.00014
+0.009 -> 0.00018
+
+[107transfert]$ tail file
+0.991 -> 0.49599
+0.992 -> 0.49643
+0.993 -> 0.49688
+0.994 -> 0.49733
+0.995 -> 0.49777
+0.996 -> 0.49822
+0.997 -> 0.49867
+0.998 -> 0.49911
+0.999 -> 0.49956
+1.000 -> 0.50000
+```
+
+--------------------
+## Language
+
+* [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+
+--------------------
+## Authors
+
+* __Alexandre CATHALIFAUD__ - [ChoKssa](https://github.com/ChoKssa)
 
 
 
