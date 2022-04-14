@@ -65,7 +65,7 @@ The denominator will be: "1"
 
 * You can manage several components in cascade. In such a case, the transfer function of the set of components is the product of the transfer functions of each component:
 <p align="center">
-  <img align="center" width="25%" src="exemple1.png"/>
+  <img align="center" width="30%" src="exemple2.png"/>
 </p>
 
 Numerators will be:  "0 * 0 * 9" and "2 * 4 * 6"  
@@ -107,9 +107,3 @@ Denominators will be: "1 * 3 * 5" and "8 * 8 * 8"
 ## Authors
 
 * __Alexandre CATHALIFAUD__ - [ChoKssa](https://github.com/ChoKssa)
-
-
-
-
-
-
